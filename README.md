@@ -126,7 +126,7 @@ method in the `com.mycompany.warehouse.WarehouseApplication` class from your IDE
   using Jacoco
 
 ## Relevance of technologies used
-- Jav17 - Latest LTS java version 
+- Java17 - Latest LTS java version 
 - Spring boot- One of the fine way to create microservices using Java
 - H2 database- Easy to use the h2 database in assignments
 - Junit- One of the best testing framework
