@@ -5,7 +5,7 @@ search products. Operation available in Warehouse API are create box , create pr
 
 ## Technologies Requirements
 
-* [Java17](https://www.oracle.com/java/). 
+* [Java17](https://www.oracle.com/java/)
 * [Maven](https://maven.apache.org/)
 * [Spring Boot](https://spring.io/projects/spring-boot)
 * [H2 Database](https://www.h2database.com/html/main.html)
@@ -15,6 +15,7 @@ search products. Operation available in Warehouse API are create box , create pr
 * [resilience4j](https://resilience4j.readme.io/docs)
 * [Spring Cloud Sleuth](https://spring.io/projects/spring-cloud-sleuth)
 * [Open API 3.0.1](https://spec.openapis.org/oas/v3.0.1)
+* [JaCoCo](https://www.eclemma.org/jacoco/)
 
 
 ## Application Envision Architecture
@@ -131,6 +132,6 @@ method in the `com.mycompany.warehouse.WarehouseApplication` class from your IDE
 - Junit- One of the best testing framework
 - Docker- Build, share, and run Any application anywhere
 - resilience4j- It is a lightweight, easy-to-use fault tolerance library
-- resilience4j- It is a lightweight, easy-to-use fault tolerance library 
 - Spring Cloud Sleuth- Provides Spring Boot auto-configuration for distributed tracing
 - Open API- Best way to share contract
+- JaCoCo- JaCoCo is a free code coverage library for Java
