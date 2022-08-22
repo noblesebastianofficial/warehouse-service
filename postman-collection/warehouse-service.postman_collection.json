@@ -1,0 +1,102 @@
+{
+	"info": {
+		"_postman_id": "dc80914a-6e29-419c-a966-aea828a49b9a",
+		"name": "warehouse-service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14674015"
+	},
+	"item": [
+		{
+			"name": "Box",
+			"item": [
+				{
+					"name": "Create Box",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n     \n        \"boxCode\": \"box2\",\n        \"locationCode\": \"shelf1\",\n        \"boxId\": 1\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{warehouse-url}}/boxes",
+							"host": [
+								"{{warehouse-url}}"
+							],
+							"path": [
+								"boxes"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "Create Product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"name\": \"gts\",\n        \"description\": \"seba\",\n        \"price\":5.0,\n        \"boxId\": 1,\n        \"Id\":1\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{warehouse-url}}/products",
+							"host": [
+								"{{warehouse-url}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n         \"searchKey\": \"gts\",\n         \"offset\": 0,\n         \"limit\":5\n    \n       \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{warehouse-url}}/products/search",
+							"host": [
+								"{{warehouse-url}}"
+							],
+							"path": [
+								"products",
+								"search"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

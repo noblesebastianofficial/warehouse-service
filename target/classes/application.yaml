@@ -1,0 +1,104 @@
+spring:
+  config:
+    activate:
+      on-profile: development
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+  application:
+    name: warehouse-service
+  datasource:
+    url: jdbc:h2:mem:test
+    username: sa
+    password: pwd
+    driver-class-name: org.h2.Driver
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        search:
+          backend:
+            type: lucene
+            directory:
+              root: ./data/index
+  jackson:
+    serialization.indent_output: true
+
+  h2:
+    console:
+      enabled: true
+      path: /h2
+server:
+  port: 9091
+
+logging:
+  level:
+    root: INFO
+
+management:
+  endpoints:
+    web:
+      base-path: /warehouse-service
+      exposure:
+        include: "*"
+
+resilience4j:
+  retry:
+    instances:
+      productSearch:
+        maxRetryAttempts: 3
+        waitDuration: 2s
+
+---
+spring:
+  config:
+    activate:
+      on-profile: production
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+  application:
+    name: warehouse-service
+  datasource:
+    url: jdbc:h2:mem:test
+    username: sa
+    password: pwd
+    driver-class-name: org.h2.Driver
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: false
+        search:
+          backend:
+            type: lucene
+            directory:
+              root: ./data/index
+  jackson:
+    serialization.indent_output: true
+
+  h2:
+    console:
+      enabled: false
+      path: /h2
+server:
+  port: 9091
+
+logging:
+  level:
+    root: INFO
+
+management:
+  endpoints:
+    web:
+      base-path: /warehouse-service
+      exposure:
+        include: "*"
+
+resilience4j:
+  retry:
+    instances:
+      productSearch:
+        maxRetryAttempts: 3
+        waitDuration: 2s

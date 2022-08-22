@@ -1,0 +1,242 @@
+openapi: 3.0.1
+info:
+  title: Warehouse API
+  description: API for Warehouse Application
+  version: 1.0.1.0
+servers:
+  - url: http://host:9091/
+tags:
+  - name: Products API
+    description: API information for Products API
+  - name: Boxes API
+    description: API information for Boxes API
+paths:
+  /products:
+    post:
+      tags:
+        - Products API
+      summary: Create new Product
+      operationId: createProduct
+      requestBody:
+        description: ProductDto
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductDto'
+        required: true
+      responses:
+        '201':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductDto'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest400Response'
+
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound404Response'
+        '500':
+          description: 'Internal Server Error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error500Response'
+      x-codegen-request-body-name: ProductDto
+  /products/search:
+    get:
+      tags:
+        - Products API
+      summary: Retrieves products by given search term
+      operationId: searchProduct
+      requestBody:
+        description: SearchRequestDto
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequestDto'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProductDto'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest400Response'
+
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound404Response'
+        '500':
+          description: 'Internal Server Error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error500Response'
+  /boxes:
+    post:
+      tags:
+        - Boxes API
+      summary: Create new box
+      operationId: createBox
+      requestBody:
+        description: BoxDto
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BoxDto'
+        required: true
+      responses:
+        '201':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BoxDto'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest400Response'
+
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound404Response'
+        '500':
+          description: 'Internal Server Error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error500Response'
+        x-codegen-request-body-name: BoxDto
+
+components:
+  schemas:
+
+    ProductDto:
+      title: ProductDto
+      required:
+        - name
+        - price
+        - boxId
+      type: object
+      properties:
+        name:
+          type: string
+          example: table
+        description:
+          type: string
+          example: Green table
+        price:
+          type: number
+          format: double
+          example: 5.0
+        boxId:
+          type: integer
+          format: int64
+          example: 1
+        shelfCode:
+          type: string
+          example: shelf1
+    SearchRequestDto:
+      title: SearchRequestDto
+      required:
+        - searchKey
+      type: object
+      properties:
+        searchKey:
+          type: string
+          example: table
+        offset:
+          type: integer
+          format: int34
+          example: 0
+        limit:
+          type: integer
+          format: int34
+          example: 5
+    BoxDto:
+      title: BoxDto
+      required:
+        - boxCode
+        - locationCode
+      type: object
+      properties:
+        boxId:
+          type: integer
+          format: int64
+          example: 1
+        boxCode:
+          type: string
+          example: Box 1
+        locationCode:
+          type: string
+          example: Shelf1
+
+    InternalServerError:
+      description: Error Objects may differ depending on the underlying services or issues encountered
+      type: object
+      example:
+        message: Varying Error messages
+    NotFound404Response:
+      type: object
+      properties:
+        error:
+          type: array
+          items:
+            $ref: '#/components/schemas/NotFoundError'
+    NotFoundError:
+      type: object
+      properties:
+        code:
+          type: string
+          example: 404 NOT_FOUND
+        message:
+          type: string
+          example: The object you're trying to find doesn't seem to exist.
+    BadRequest400Response:
+      type: object
+      properties:
+        error:
+          type: array
+          items:
+            $ref: '#/components/schemas/BadRequestError'
+    BadRequestError:
+      type: object
+      properties:
+        code:
+          type: string
+          example: 403 FORBIDDEN
+        message:
+          type: string
+          example: The request the user made is incorrect or corrupt, and the server can't understand it.
+    Error500Response:
+      type: object
+      properties:
+        error:
+          type: array
+          items:
+            $ref: '#/components/schemas/InternalServerError'

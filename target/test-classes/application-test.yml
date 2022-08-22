@@ -1,0 +1,11 @@
+spring:
+  jpa:
+    properties:
+      hibernate:
+        search:
+          backend:
+            directory:
+              type : local-heap
+  config:
+    activate:
+      on-profile: test
