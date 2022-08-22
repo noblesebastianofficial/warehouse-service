@@ -19,7 +19,7 @@ search products. Operation available in Warehouse API are create box , create pr
 
 ## Application Envision Architecture
 
-![](images/warehouse.jpeg)
+![](images/warehouse.jpg)
 
 ## How to run the application
 
