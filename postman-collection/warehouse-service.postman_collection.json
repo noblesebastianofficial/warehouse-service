@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n     \n        \"boxCode\": \"box2\",\n        \"locationCode\": \"shelf1\",\n        \"boxId\": 1\n\n}",
+							"raw": "{\n     \n        \"boxCode\": \"box2\",\n        \"locationCode\": \"shelf1\",\n        \"boxId\": \"1\"\n\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -47,7 +47,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n        \"name\": \"gts\",\n        \"description\": \"seba\",\n        \"price\":5.0,\n        \"boxId\": 1,\n        \"Id\":1\n\n}",
+							"raw": "{\n        \"name\": \"gts\",\n        \"description\": \"seba\",\n        \"price\":5.0,\n        \"boxId\": 1\n\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -76,7 +76,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n         \"searchKey\": \"gts\",\n         \"offset\": 0,\n         \"limit\":5\n    \n       \n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -84,13 +84,27 @@
 							}
 						},
 						"url": {
-							"raw": "{{warehouse-url}}/products/search",
+							"raw": "{{warehouse-url}}/products/search?searchKey=gts&offset=0&limit=5",
 							"host": [
 								"{{warehouse-url}}"
 							],
 							"path": [
 								"products",
 								"search"
+							],
+							"query": [
+								{
+									"key": "searchKey",
+									"value": "gts"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								},
+								{
+									"key": "limit",
+									"value": "5"
+								}
 							]
 						}
 					},

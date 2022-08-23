@@ -57,13 +57,28 @@ paths:
         - Products API
       summary: Retrieves products by given search term
       operationId: searchProduct
-      requestBody:
-        description: SearchRequestDto
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/SearchRequestDto'
-        required: true
+      parameters:
+        - name: searchKey
+          in: query
+          description: searchKey
+          required: true
+          schema:
+            type: string
+            example: table
+        - name: offset
+          in: query
+          description: offset
+          schema:
+            type: integer
+            format: int34
+            example: 0
+        - name: limit
+          in: query
+          description: limit
+          schema:
+            type: integer
+            format: int34
+            example: 5
       responses:
         '200':
           description: OK

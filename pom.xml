@@ -135,7 +135,7 @@
                             <modelPackage>com.mycompany.warehouse.openapi.model</modelPackage>
                             <configOptions>
                                 <interfaceOnly>true</interfaceOnly>
-
+                                <performBeanValidation>true</performBeanValidation>
                                 <delegatePattern>true</delegatePattern>
                                 <!--suppress UnresolvedMavenProperty -->
                                 <additionalModelTypeAnnotations>@lombok.Builder @lombok.NoArgsConstructor @lombok.AllArgsConstructor</additionalModelTypeAnnotations>

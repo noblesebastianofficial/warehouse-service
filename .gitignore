@@ -1,0 +1,9 @@
+
+*.class
+*.cfe
+*.cfs
+*.si
+data/index/Product/segments_3
+data/index/Product/write.lock
+Product/segments_1
+*.lock
