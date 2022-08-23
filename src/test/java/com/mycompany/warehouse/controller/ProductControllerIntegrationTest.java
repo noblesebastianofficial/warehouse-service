@@ -7,7 +7,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.mycompany.warehouse.BaseIntegrationIT;
 import com.mycompany.warehouse.openapi.model.BoxDto;
 import com.mycompany.warehouse.openapi.model.ProductDto;
-import com.mycompany.warehouse.openapi.model.SearchRequestDto;
 import java.util.concurrent.ThreadLocalRandom;
 import javax.transaction.Transactional;
 import org.junit.jupiter.api.BeforeEach;
@@ -78,24 +77,20 @@ class ProductControllerIntegrationTest extends BaseIntegrationIT {
         // Given
         ProductDto productDto = getProductDto();
         this.productService.createProduct(productDto);
-        SearchRequestDto searchRequestDto=getSearchRequestDto(productDto.getName());
         // When
         mockMvc.perform(get(API_ROOT+"/search")
             .contentType(APPLICATION_JSON)
-            .content(objectMapper.writeValueAsString(searchRequestDto)))
+            .param("searchKey",productDto.getName()))
             //Then
             .andExpect(status().isOk());
     }
 
     @Test
     void searchProduct_productList_isBadRequest() throws Exception{
-        // Given
-        SearchRequestDto searchRequestDto=new SearchRequestDto();
 
         // When
         mockMvc.perform(get(API_ROOT+"/search")
-            .contentType(APPLICATION_JSON)
-            .content(objectMapper.writeValueAsString(searchRequestDto)))
+            .contentType(APPLICATION_JSON))
             //Then
             .andExpect(status().isBadRequest());
     }
@@ -103,12 +98,12 @@ class ProductControllerIntegrationTest extends BaseIntegrationIT {
     @Test
     void searchProduct_productList_isNotFound() throws Exception{
         // Given
-        SearchRequestDto searchRequestDto=getSearchRequestDto("test");
+        String searchKey="test";
 
         // When
         mockMvc.perform(get(API_ROOT+"/search/bash")
             .contentType(APPLICATION_JSON)
-            .content(objectMapper.writeValueAsString(searchRequestDto)))
+            .param("searchKey",searchKey))
             //Then
             .andExpect(status().isNotFound());
     }
@@ -119,9 +114,7 @@ class ProductControllerIntegrationTest extends BaseIntegrationIT {
             .shelfCode("shelf1").build();
     }
 
-    private SearchRequestDto getSearchRequestDto(String searchKey) {
-        return SearchRequestDto.builder().searchKey(searchKey).build();
-    }
+
 
 
     private BoxDto createBox(){

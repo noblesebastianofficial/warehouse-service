@@ -176,23 +176,6 @@ components:
         shelfCode:
           type: string
           example: shelf1
-    SearchRequestDto:
-      title: SearchRequestDto
-      required:
-        - searchKey
-      type: object
-      properties:
-        searchKey:
-          type: string
-          example: table
-        offset:
-          type: integer
-          format: int34
-          example: 0
-        limit:
-          type: integer
-          format: int34
-          example: 5
     BoxDto:
       title: BoxDto
       required:
