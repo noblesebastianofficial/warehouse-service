@@ -96,6 +96,7 @@ method in the `com.mycompany.warehouse.WarehouseApplication` class from your IDE
     * Select the project
 * 	Choose the Spring Boot Application file (search for @SpringBootApplication)
 * 	Right Click on the file and Run as Java Application
+* 	Use the profile as development
 
 
 
